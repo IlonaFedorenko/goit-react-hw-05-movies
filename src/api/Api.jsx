@@ -1,3 +1,4 @@
+import { configure } from '@testing-library/react';
 import axios from 'axios';
 
 const url = axios.create({
@@ -8,7 +9,7 @@ const url = axios.create({
 });
 
 export async function getTrendingMovies() {
-  const getUrl = '/trending/movie/week';
+  const getUrl = `/trending/movie/week`;
   try {
     const { data } = await url.get(getUrl);
     return data.results;
@@ -17,10 +18,11 @@ export async function getTrendingMovies() {
   }
 }
 
-export async function searchMovies() {
-  const getUrl = '/search/movie';
+export async function searchMovies(movieName) {
+  const getUrl = `/search/movie`;
+  // const getUrl = `/search/movie?query=${movieName}`;
   try {
-    const { data } = await url.get(getUrl);
+    const { data } = await url.get(getUrl, { params: { query: movieName } });
     return data;
   } catch (error) {
     throw error;
@@ -28,7 +30,7 @@ export async function searchMovies() {
 }
 
 export async function getDetailsMovies(id) {
-  const getUrl = '/movie/${id}';
+  const getUrl = `/movie/${id}`;
   try {
     const { data } = await url.get(getUrl);
     return data;
@@ -38,7 +40,7 @@ export async function getDetailsMovies(id) {
 }
 
 export async function getCreditsMovies() {
-  const getUrl = '/movies/get-movie-credits';
+  const getUrl = `/movies/get-movie-credits`;
   try {
     const { data } = await url.get(getUrl);
     return data.results;
@@ -48,7 +50,7 @@ export async function getCreditsMovies() {
 }
 
 export async function getReviewsMovies() {
-  const getUrl = '/movies/get-movie-reviews';
+  const getUrl = `/movies/get-movie-reviews`;
   try {
     const { data } = await url.get(getUrl);
     return data.results;

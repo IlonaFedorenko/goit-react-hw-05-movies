@@ -6,7 +6,6 @@ import css from './MovieSearch.style.css';
 
 const MovieSearch = () => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [searchParams, setSerchParams] = useSearchParams();
   const searchQuery = searchParams.get('query');
   const [query, setQuery] = useState(() => searchQuery || '');
@@ -16,14 +15,10 @@ const MovieSearch = () => {
   useEffect(() => {
     const getMovies = async () => {
       try {
-        setLoading(true);
         const { results } = await searchMovies(searchQuery);
         setMovies(results);
-        setLoading(false);
       } catch (error) {
         console.log(error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -49,8 +44,9 @@ const MovieSearch = () => {
           onChange={handleChange}
           className={css.input}
           type="text"
-          name="query"
+          name="search"
           value={query}
+          placeholder="Search movie"
           autoComplete="off"
           autoFocus
         ></input>
@@ -60,25 +56,15 @@ const MovieSearch = () => {
       </form>
 
       <ul className={css.list}>
-        {searchQuery ? (
-          loading ? (
-            'Loading...'
-          ) : movies.length > 0 ? (
-            movies.map(({ title, id }) => (
-              <li key={id} className={css.listItem}>
-                <Link state={{ from: location }} to={`/movies/${id}`}>
-                  {title}
-                </Link>
-              </li>
-            ))
-          ) : (
-            <p>
-              No movies with this title were found. Try entering another title
-            </p>
-          )
-        ) : (
-          <p className={css.descr}></p>
-        )}
+        {movies.map(movie => {
+          return (
+            <li key={movie.id}>
+              <Link to={`${movie.id}`} state={{ from: location }}>
+                {movie.title}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </>
   );

@@ -5,16 +5,13 @@ import css from '../Home/Home.style.css';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
     const getMovies = async () => {
       try {
-        setLoading(true);
         const movies = await getTrendingMovies();
         setMovies(movies);
-        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -26,19 +23,17 @@ const Home = () => {
     <>
       <div>
         <h2>Trending movies:</h2>
-        {loading
-          ? 'Loading...'
-          : movies.map(({ title, id }) => (
-              <div key={id}>
-                <Link
-                  to={`/movies/${id}`}
-                  state={{ from: location }}
-                  className={css.movieItem}
-                >
+        <ul>
+          {movies.map(({ id, title }) => {
+            return (
+              <li key={id}>
+                <Link to={`movie/${id}`} state={{ from: location }}>
                   {title}
                 </Link>
-              </div>
-            ))}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </>
   );

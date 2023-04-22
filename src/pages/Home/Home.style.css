@@ -1,22 +1,4 @@
-.movieItem::before {
-  content: '';
-  background-size: cover;
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  left: -20px;
-  /* fill: #272727; */
+.movieItem {
 }
-
-.movieItem:hover,
-.movieItem:focus {
-  color: orange;
-  cursor: pointer;
-}
-
-.listMovie ul{
-  list-style-type: none;
-  margin-bottom: 10px;
-  font-size: 0px;
-  margin-left: 100px;
+.movieLink {
 }
