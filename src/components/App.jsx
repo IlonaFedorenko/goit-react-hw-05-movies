@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 // const Home = lazy(() => import('../pages/Home/Home'));
 // const MovieSearch = lazy(() => import('../components/MovieSearch/MovieSearch'));
@@ -23,47 +23,14 @@ export const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="/movies" element={<MovieSearch />} />
-        <Route path="/movies/:moviesId" element={<MovieDetails />} />
+        <Route path="/movies/:moviesId" element={<MovieDetails />}>
+          {/* <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} /> */}
+        </Route>
+        <Route path="*" element={<Home />} />
+        <Route path="/movies/:moviesId/cast" element={<Cast />} />
+        <Route path="/movies/:moviesId/reviews" element={<Reviews />} />
       </Route>
     </Routes>
   );
 };
-
-// export const App = () => {
-//   return (
-//     <>
-//       <Routes path="/" element={<Layout />}>
-//         <Route index element={<Home />} />
-//         <Route path="/movies" element={<MovieSearch />} />
-//         <Route path="movies/:movieId" element={<MovieDetails />}>
-//           {/* <Route path="/movies/:cast" element={<Cast />} />
-//           <Route path="/movies/:reviews" element={<Reviews />} /> */}
-//         </Route>
-//         <Route path="*" element={<Home />} />
-//       </Routes>
-//     </>
-//   );
-// };
-
-// export const App = () => {
-//   return (
-//     <div>
-//       <ul>
-//         <li>
-//           <NavLink to="/">Home</NavLink>
-//         </li>
-//         <li>
-//           <NavLink to="/Movies">Movies </NavLink>
-//         </li>
-//       </ul>
-
-//       <Routes>
-//         <Route path="/" element={<Layout />}>
-//           <Route index element={<Home />} />
-//           <Route path="/movies" element={<MovieSearch />} />
-//           {/* <Route path="/movies/:moviesId" element={<MovieDetails />} /> */}
-//         </Route>
-//       </Routes>
-//     </div>
-//   );
-// };

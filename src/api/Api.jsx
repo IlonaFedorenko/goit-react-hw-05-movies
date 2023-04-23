@@ -18,10 +18,12 @@ export async function getTrendingMovies() {
 }
 
 export async function searchMovies(movieName) {
-  const getUrl = `/search/movie`;
-  // const getUrl = `/search/movie?query=${movieName}`;
+  // const getUrl = `/search/movie`;
+  const getUrl = `/search/movie?query=${movieName}`;
   try {
-    const { data } = await url.get(getUrl, { params: { query: movieName } });
+    const { data } = await url.get(getUrl);
+    // const { data } = await url.get(getUrl, {params: { query: movieName }, });
+
     return data;
   } catch (error) {
     throw error;
@@ -29,31 +31,30 @@ export async function searchMovies(movieName) {
 }
 
 export async function getDetailsMovies(id) {
-  // const getUrl = `/movie/${id}`;
-  const getUrl = `/movie/`;
+  const getUrl = `/movie/${id}`;
   try {
-    const { data } = await url.get(getUrl, { params: { movie_id: id } });
+    const { data } = await url.get(getUrl);
     return data;
   } catch (error) {
     throw error;
   }
 }
 
-export async function getCreditsMovies() {
-  const getUrl = `/movies/get-movie-credits`;
+export async function getCreditsMovies(id) {
+  const getUrl = `/movie/${id}/credits`;
   try {
     const { data } = await url.get(getUrl);
-    return data.results;
+    return data;
   } catch (error) {
     throw error;
   }
 }
 
-export async function getReviewsMovies() {
-  const getUrl = `/movies/get-movie-reviews`;
+export async function getReviewsMovies(id) {
+  const getUrl = `/movie/${id}/reviews`;
   try {
     const { data } = await url.get(getUrl);
-    return data.results;
+    return data;
   } catch (error) {
     throw error;
   }
