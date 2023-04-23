@@ -3,8 +3,6 @@ import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { searchMovies } from '../../api/Api';
 import PropTypes from 'prop-types';
 
-import css from './MovieSearch.style.css';
-
 const MovieSearch = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSerchParams] = useSearchParams();
@@ -40,10 +38,9 @@ const MovieSearch = () => {
 
   return (
     <>
-      <form className={css.form} onSubmit={handelSubmit}>
+      <form onSubmit={handelSubmit}>
         <input
           onChange={handleChange}
-          className={css.input}
           type="text"
           name="search"
           value={query}
@@ -51,12 +48,12 @@ const MovieSearch = () => {
           autoComplete="off"
           autoFocus
         ></input>
-        <button type="submit" className={css.button}>
-          <span className={css.buttonLabel}>Search</span>
+        <button type="submit">
+          <span>Search</span>
         </button>
       </form>
 
-      <ul className={css.list}>
+      <ul>
         {movies.map(movie => {
           return (
             <li key={movie.id}>
