@@ -1,4 +1,3 @@
-import { configure } from '@testing-library/react';
 import axios from 'axios';
 
 const url = axios.create({
@@ -30,9 +29,10 @@ export async function searchMovies(movieName) {
 }
 
 export async function getDetailsMovies(id) {
-  const getUrl = `/movie/${id}`;
+  // const getUrl = `/movie/${id}`;
+  const getUrl = `/movie/`;
   try {
-    const { data } = await url.get(getUrl);
+    const { data } = await url.get(getUrl, { params: { movie_id: id } });
     return data;
   } catch (error) {
     throw error;

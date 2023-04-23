@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { searchMovies } from '../../api/Api';
+import PropTypes from 'prop-types';
 
 import css from './MovieSearch.style.css';
 
@@ -68,6 +69,15 @@ const MovieSearch = () => {
       </ul>
     </>
   );
+};
+
+MovieSearch.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default MovieSearch;

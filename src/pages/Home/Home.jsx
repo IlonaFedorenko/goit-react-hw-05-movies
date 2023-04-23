@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getTrendingMovies } from '../../api/Api';
+import PropTypes from 'prop-types';
 import css from '../Home/Home.style.css';
 
 const Home = () => {
@@ -37,6 +38,15 @@ const Home = () => {
       </div>
     </>
   );
+};
+
+Home.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default Home;

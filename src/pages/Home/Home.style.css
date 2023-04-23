@@ -1,4 +1,8 @@
-.movieItem {
+.list {
+  display: flex;
+  margin-left: 10px;
 }
-.movieLink {
+.title {
+  display: flex;
+  margin-left: 50px;
 }

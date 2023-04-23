@@ -15,25 +15,17 @@ import MovieSearch from './MovieSearch/MovieSearch';
 import MovieDetails from '../pages/Movies/MovieDetails/MovieDetails';
 import Cast from '../pages/Movies/Cast/Cast';
 import Reviews from '../pages/Movies/Reviews/Review';
+import Layout from '../components/Layout/Layout';
 
 export const App = () => {
   return (
-    <div>
-      <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/Movies">Movies </NavLink>
-        </li>
-      </ul>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
         <Route path="/movies" element={<MovieSearch />} />
-        {/* <Route path="/movies/:moviesId" element={<MovieDetails />} /> */}
-      </Routes>
-    </div>
+        <Route path="/movies/:moviesId" element={<MovieDetails />} />
+      </Route>
+    </Routes>
   );
 };
 
@@ -50,5 +42,28 @@ export const App = () => {
 //         <Route path="*" element={<Home />} />
 //       </Routes>
 //     </>
+//   );
+// };
+
+// export const App = () => {
+//   return (
+//     <div>
+//       <ul>
+//         <li>
+//           <NavLink to="/">Home</NavLink>
+//         </li>
+//         <li>
+//           <NavLink to="/Movies">Movies </NavLink>
+//         </li>
+//       </ul>
+
+//       <Routes>
+//         <Route path="/" element={<Layout />}>
+//           <Route index element={<Home />} />
+//           <Route path="/movies" element={<MovieSearch />} />
+//           {/* <Route path="/movies/:moviesId" element={<MovieDetails />} /> */}
+//         </Route>
+//       </Routes>
+//     </div>
 //   );
 // };
