@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCreditsMovies } from '../../../api/Api';
+import noPoster from '../../../img/noPoster.jpg';
 import PropTypes from 'prop-types';
 
 function Cast() {
@@ -31,7 +32,11 @@ function Cast() {
             return (
               <li key={cast_id}>
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                      : noPoster
+                  }
                   alt="character"
                   width="150"
                 />

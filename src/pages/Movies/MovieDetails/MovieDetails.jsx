@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { getDetailsMovies } from '../../../api/Api';
 import PropTypes from 'prop-types';
+import noPoster from '../../../img/noPoster.jpg';
 
 function MovieDetails() {
   const { moviesId } = useParams();
@@ -43,7 +44,11 @@ function MovieDetails() {
       <Link to={location.state?.from ?? '/movie'}>Back</Link>
       <div>
         <img
-          src={`https://image.tmdb.org/t/p/w500${movies.poster_path}`}
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/w500${poster_path}`
+              : noPoster
+          }
           alt="Poster"
           height="400"
         />

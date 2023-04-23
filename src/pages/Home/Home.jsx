@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getTrendingMovies } from '../../api/Api';
 import PropTypes from 'prop-types';
-import css from '../Home/Home.style.css';
+
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
