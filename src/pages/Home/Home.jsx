@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getTrendingMovies } from '../../api/Api';
 import PropTypes from 'prop-types';
-
+import css from './Home.module.css';
+import noPoster from '../../img/noPoster.jpg';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -20,15 +21,31 @@ const Home = () => {
     getMovies();
   }, []);
 
+  const { poster_path } = movies;
+
   return (
     <>
       <div>
-        <h2>Trending movies:</h2>
-        <ul>
+        <h2 className={css.text}>Trending movies:</h2>
+        <ul className={css.list}>
           {movies.map(({ id, title }) => {
             return (
-              <li key={id}>
-                <Link to={`movies/${id}`} state={{ from: location }}>
+              <li key={id} className={css.item}>
+                <img
+                  className={css.img}
+                  src={
+                    poster_path
+                      ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                      : noPoster
+                  }
+                  alt="Poster"
+                  height="400"
+                />
+                <Link
+                  className={css.link}
+                  to={`movies/${id}`}
+                  state={{ from: location }}
+                >
                   {title}
                 </Link>
               </li>

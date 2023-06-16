@@ -9,6 +9,7 @@ import {
 import { getDetailsMovies } from '../../../api/Api';
 import PropTypes from 'prop-types';
 import noPoster from '../../../img/noPoster.jpg';
+import css from './MovieDetails.module.css';
 
 function MovieDetails() {
   const { moviesId } = useParams();
@@ -41,9 +42,12 @@ function MovieDetails() {
 
   return (
     <>
-      <Link to={location.state?.from ?? '/movie'}>Back</Link>
-      <div>
+      <Link className={css.link} to={location.state?.from ?? '/movie'}>
+        Back
+      </Link>
+      <div className={css.card}>
         <img
+          className={css.img}
           src={
             poster_path
               ? `https://image.tmdb.org/t/p/w500${poster_path}`
@@ -52,16 +56,26 @@ function MovieDetails() {
           alt="Poster"
           height="400"
         />
-        <div>
-          <h1>{title}:</h1>
-          <p>User Score: {userScoreNormalized + '%'} </p>
-          <h2>Overview</h2>
-          <p>{overview}</p>
-          <h2>Genres</h2>
-          <p>{genresPars}</p>
+        <div className={css.box}>
+          <ul className={css.list}>
+            <li className={css.item}>
+              <h1 className={css.title}>{title}:</h1>
+              <p className={css.text_element}>
+                User Score: {userScoreNormalized + '%'}{' '}
+              </p>
+            </li>
+            <li className={css.item}>
+              <h2 className={css.text}>Overview</h2>
+              <p className={css.text_element}> {overview}</p>
+            </li>
+            <li className={css.item}>
+              <h2 className={css.text}>Genres</h2>
+              <p className={css.text_element}>{genresPars}</p>
+            </li>
+          </ul>
         </div>
       </div>
-      <div>
+      <div className={css.card_inform}>
         <h3>Additional iformation</h3>
         <ul>
           <li>

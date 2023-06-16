@@ -1,0 +1,18 @@
+.text {
+  font-size: 21px;
+}
+
+.list {
+  display: block;
+  font-size: 21px;
+  list-style: none;
+  
+}
+
+.item {
+  display: grid;
+}
+
+.box {
+  display: contents;
+}
