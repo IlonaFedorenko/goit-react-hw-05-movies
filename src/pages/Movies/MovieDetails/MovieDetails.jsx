@@ -34,6 +34,8 @@ function MovieDetails() {
 
   const { title, overview, genres, poster_path, vote_average } = movies;
   const userScoreNormalized = (vote_average * 10).toFixed();
+  
+  console.log(movies.poster_path);
 
   const genresPars = genres.map(({ name, id }) => {
     const gens = `${name} `;

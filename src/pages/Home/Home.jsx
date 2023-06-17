@@ -21,14 +21,16 @@ const Home = () => {
     getMovies();
   }, []);
 
-  const { poster_path } = movies;
+  if (movies.length === 0) {
+    return;
+  }
 
   return (
     <>
       <div>
         <h2 className={css.text}>Trending movies:</h2>
         <ul className={css.list}>
-          {movies.map(({ id, title }) => {
+          {movies.map(({ id, title, poster_path }) => {
             return (
               <li key={id} className={css.item}>
                 <img
@@ -39,7 +41,7 @@ const Home = () => {
                       : noPoster
                   }
                   alt="Poster"
-                  height="400"
+                  height="200"
                 />
                 <Link
                   className={css.link}
